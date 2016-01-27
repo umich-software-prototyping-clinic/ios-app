@@ -1,31 +1,19 @@
+
 import UIKit
-class LoginViewController: UIViewController, PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate, UITableViewDelegate, UITableViewDataSource
+class confirmPageViewController: UIViewController,PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate, UITextFieldDelegate
 {
-    
     let button = UIButton()
     let resetPasswordButton = UIButton()
     let printButton = UIButton()
     let userListButton = UIButton()
+    let message = UILabel()
+    let message2 = UILabel()
     let exampleTitle = UILabel()
-    var userArray: [String] = []
-    var emailArray: [String] = []
-    
-
-    
     
     override func viewDidLoad()
     {
-        
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.whiteColor()
-        let tableView: UITableView  =   UITableView()
-        tableView.frame  =  CGRectMake(0, 50, 320, 200);
-        tableView.delegate  =  self
-        tableView.dataSource    =   self
-        
-        tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
-        
-        self.view.addSubview(tableView)
         
         self.view.addSubview(exampleTitle)
         exampleTitle.backgroundColor = UIColor.lightGrayColor()
@@ -37,6 +25,22 @@ class LoginViewController: UIViewController, PFLogInViewControllerDelegate, PFSi
         exampleTitle.textAlignment = NSTextAlignment.Center
         exampleTitle.text = "Example App"
         exampleTitle.textColor = UIColor.whiteColor()
+        
+        self.view.addSubview(message)
+        message.sizeToHeight(30)
+        message.sizeToWidth(600)
+        message.centerHorizontallyInSuperview()
+        message.positionBelowItem(exampleTitle, offset: 30)
+        message.font = UIFont(name: "AvenirNext-DemiBold", size: 15)
+        message.text = "Password Reset Succeeded!"
+
+        self.view.addSubview(message2)
+        message2.sizeToHeight(30)
+        message2.sizeToWidth(600)
+        message2.pinToLeftEdgeOfSuperview(20)
+        message2.positionBelowItem(message, offset: 20)
+        message2.font = UIFont(name: "AvenirNext-DemiBold", size: 15)
+        message2.text = "An email has been sent to:"
         
         self.view.addSubview(button)
         button.backgroundColor = UIColor.darkGrayColor()
@@ -77,56 +81,7 @@ class LoginViewController: UIViewController, PFLogInViewControllerDelegate, PFSi
         userListButton.titleLabel?.font = UIFont(name: "AvenirNext-DemiBold", size: 15)
         userListButton.addTarget(self, action: "userListAction", forControlEvents: .TouchUpInside)
         
-        
-        //Create table view
-     
-        
-        //Retrieve list of all users
-        
-        
-        let query:PFQuery=PFQuery(className: "_User");
-        query.findObjectsInBackgroundWithBlock { (objects:[PFObject]?, error:NSError?) -> Void in
-            if !(error != nil) {
-                for(var i=0;i<objects!.count;i++){
-                    let object=objects![i] as! PFObject;
-                    let name = object.objectForKey("username") as! String;
-                    let email = object.objectForKey("email") as! String;
-                    self.userArray.append(name)
-                    self.emailArray.append(email)
-                    tableView.reloadData()
-                    
-                }
-            }
-        }
-        
-        
-        // Do any additional setup after loading the view.
-    }//func
-    
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return userArray.count;
-    }
-    
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
-        let cell = UITableViewCell(style: UITableViewCellStyle.Subtitle,
-            reuseIdentifier: "cell") as UITableViewCell
-        
-        
-        cell.textLabel?.text = userArray[indexPath.row]
-        cell.detailTextLabel?.text = emailArray[indexPath.row]
-        return cell
-        
-        
-    }
-    override func didReceiveMemoryWarning()
-    {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }//func
-    
-    //MARK: Parse Login
-    //If no user logged in then parse login view opens
+    }//viewDidLoad
     func loginSetup()
     {
         if (PFUser.currentUser() == nil)
@@ -238,6 +193,5 @@ class LoginViewController: UIViewController, PFLogInViewControllerDelegate, PFSi
     
     
     
-
+    
 }
-    //LoginViewController

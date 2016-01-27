@@ -15,6 +15,9 @@
 		FC19BC001C45F10100D5D923 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC19BBFE1C45F10100D5D923 /* LaunchScreen.storyboard */; };
 		FC19BC0B1C45F10100D5D923 /* iOS_appTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC19BC0A1C45F10100D5D923 /* iOS_appTests.swift */; };
 		FC19BC161C45F10100D5D923 /* iOS_appUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC19BC151C45F10100D5D923 /* iOS_appUITests.swift */; };
+		FC4417991C57263600A78E48 /* printViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4417981C57263600A78E48 /* printViewController.swift */; };
+		FC44179F1C586D4C00A78E48 /* resetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC44179E1C586D4C00A78E48 /* resetPasswordViewController.swift */; };
+		FC4417A11C587AE000A78E48 /* confirmPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4417A01C587AE000A78E48 /* confirmPageViewController.swift */; };
 		FC45C1921C45FAE800FD17BE /* AutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC45C1911C45FAE800FD17BE /* AutoLayout.swift */; };
 /* End PBXBuildFile section */
 
@@ -52,6 +55,9 @@
 		FC19BC111C45F10100D5D923 /* iOS appUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "iOS appUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC19BC151C45F10100D5D923 /* iOS_appUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOS_appUITests.swift; sourceTree = "<group>"; };
 		FC19BC171C45F10100D5D923 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FC4417981C57263600A78E48 /* printViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = printViewController.swift; path = ../printViewController.swift; sourceTree = "<group>"; };
+		FC44179E1C586D4C00A78E48 /* resetPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = resetPasswordViewController.swift; sourceTree = "<group>"; };
+		FC4417A01C587AE000A78E48 /* confirmPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = confirmPageViewController.swift; sourceTree = "<group>"; };
 		FC45C18E1C45F78E00FD17BE /* iOS app-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iOS app-Bridging-Header.h"; sourceTree = "<group>"; };
 		FC45C1911C45FAE800FD17BE /* AutoLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoLayout.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -126,7 +132,10 @@
 			children = (
 				FC45C18E1C45F78E00FD17BE /* iOS app-Bridging-Header.h */,
 				FC19BBF51C45F10100D5D923 /* AppDelegate.swift */,
+				FC4417981C57263600A78E48 /* printViewController.swift */,
 				FC19BBF71C45F10100D5D923 /* ViewController.swift */,
+				FC44179E1C586D4C00A78E48 /* resetPasswordViewController.swift */,
+				FC4417A01C587AE000A78E48 /* confirmPageViewController.swift */,
 				FC19BBF91C45F10100D5D923 /* Main.storyboard */,
 				FC19BBFC1C45F10100D5D923 /* Assets.xcassets */,
 				FC19BBFE1C45F10100D5D923 /* LaunchScreen.storyboard */,
@@ -336,8 +345,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC4417A11C587AE000A78E48 /* confirmPageViewController.swift in Sources */,
+				FC4417991C57263600A78E48 /* printViewController.swift in Sources */,
 				FC45C1921C45FAE800FD17BE /* AutoLayout.swift in Sources */,
 				FC19BBF81C45F10100D5D923 /* ViewController.swift in Sources */,
+				FC44179F1C586D4C00A78E48 /* resetPasswordViewController.swift in Sources */,
 				FC19BBF61C45F10100D5D923 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

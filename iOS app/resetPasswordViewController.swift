@@ -1,31 +1,22 @@
+
 import UIKit
-class LoginViewController: UIViewController, PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate, UITableViewDelegate, UITableViewDataSource
+class resetPasswordViewController: UIViewController,PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate, UITextFieldDelegate
 {
-    
     let button = UIButton()
     let resetPasswordButton = UIButton()
     let printButton = UIButton()
     let userListButton = UIButton()
     let exampleTitle = UILabel()
-    var userArray: [String] = []
-    var emailArray: [String] = []
-    
-
-    
+    let newPasswordTitle = UILabel()
+    let confirmPasswordTitle = UILabel()
+    let newPasswordField = UITextField()
+    let confirmPasswordField = UITextField()
+    let changePasswordButton = UIButton()
     
     override func viewDidLoad()
     {
-        
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.whiteColor()
-        let tableView: UITableView  =   UITableView()
-        tableView.frame  =  CGRectMake(0, 50, 320, 200);
-        tableView.delegate  =  self
-        tableView.dataSource    =   self
-        
-        tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
-        
-        self.view.addSubview(tableView)
         
         self.view.addSubview(exampleTitle)
         exampleTitle.backgroundColor = UIColor.lightGrayColor()
@@ -37,6 +28,50 @@ class LoginViewController: UIViewController, PFLogInViewControllerDelegate, PFSi
         exampleTitle.textAlignment = NSTextAlignment.Center
         exampleTitle.text = "Example App"
         exampleTitle.textColor = UIColor.whiteColor()
+
+        
+        self.view.addSubview(newPasswordTitle)
+        newPasswordTitle.sizeToHeight(40)
+        newPasswordTitle.sizeToWidth(150)
+        newPasswordTitle.centerVerticallyInSuperview()
+        newPasswordTitle.pinToLeftEdgeOfSuperview(30)
+        newPasswordTitle.text = "New Password: "
+        
+        self.view.addSubview(newPasswordField)
+        newPasswordField.delegate = self
+        newPasswordField.sizeToHeight(40)
+        newPasswordField.sizeToWidth(200)
+        newPasswordField.positionToTheRightOfItem(newPasswordTitle, offset: 10)
+        newPasswordField.centerVerticallyInSuperview()
+        newPasswordField.layer.borderWidth = 1
+        newPasswordField.layer.borderColor = UIColor.blackColor().CGColor
+        
+        self.view.addSubview(confirmPasswordTitle)
+        confirmPasswordTitle.sizeToHeight(40)
+        confirmPasswordTitle.sizeToWidth(200)
+        confirmPasswordTitle.positionBelowItem(newPasswordTitle, offset: 20)
+        confirmPasswordTitle.pinToLeftEdgeOfSuperview(30)
+        confirmPasswordTitle.text = "Confirm Password: "
+        
+        self.view.addSubview(confirmPasswordField)
+        confirmPasswordField.delegate = self
+        confirmPasswordField.sizeToHeight(40)
+        confirmPasswordField.sizeToWidth(200)
+        confirmPasswordField.positionBelowItem(newPasswordField, offset: 20)
+        confirmPasswordField.pinLeftEdgeToLeftEdgeOfItem(newPasswordField)
+        confirmPasswordField.layer.borderWidth = 1
+        confirmPasswordField.layer.borderColor = UIColor.blackColor().CGColor
+        
+        self.view.addSubview(changePasswordButton)
+        changePasswordButton.backgroundColor = UIColor.purpleColor()
+        changePasswordButton.sizeToHeight(40)
+        changePasswordButton.sizeToWidth(200)
+        changePasswordButton.centerHorizontallyInSuperview()
+        changePasswordButton.positionBelowItem(confirmPasswordField, offset: 30)
+        changePasswordButton.setTitle("Change Password", forState: UIControlState.Normal)
+        changePasswordButton.titleLabel?.font = UIFont(name: "AvenirNext-DemiBold", size: 15)
+        changePasswordButton.addTarget(self, action: "passwordCheck", forControlEvents: .TouchUpInside)
+        
         
         self.view.addSubview(button)
         button.backgroundColor = UIColor.darkGrayColor()
@@ -77,56 +112,7 @@ class LoginViewController: UIViewController, PFLogInViewControllerDelegate, PFSi
         userListButton.titleLabel?.font = UIFont(name: "AvenirNext-DemiBold", size: 15)
         userListButton.addTarget(self, action: "userListAction", forControlEvents: .TouchUpInside)
         
-        
-        //Create table view
-     
-        
-        //Retrieve list of all users
-        
-        
-        let query:PFQuery=PFQuery(className: "_User");
-        query.findObjectsInBackgroundWithBlock { (objects:[PFObject]?, error:NSError?) -> Void in
-            if !(error != nil) {
-                for(var i=0;i<objects!.count;i++){
-                    let object=objects![i] as! PFObject;
-                    let name = object.objectForKey("username") as! String;
-                    let email = object.objectForKey("email") as! String;
-                    self.userArray.append(name)
-                    self.emailArray.append(email)
-                    tableView.reloadData()
-                    
-                }
-            }
-        }
-        
-        
-        // Do any additional setup after loading the view.
-    }//func
-    
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return userArray.count;
-    }
-    
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
-        let cell = UITableViewCell(style: UITableViewCellStyle.Subtitle,
-            reuseIdentifier: "cell") as UITableViewCell
-        
-        
-        cell.textLabel?.text = userArray[indexPath.row]
-        cell.detailTextLabel?.text = emailArray[indexPath.row]
-        return cell
-        
-        
-    }
-    override func didReceiveMemoryWarning()
-    {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }//func
-    
-    //MARK: Parse Login
-    //If no user logged in then parse login view opens
+    }//viewDidLoad
     func loginSetup()
     {
         if (PFUser.currentUser() == nil)
@@ -236,8 +222,23 @@ class LoginViewController: UIViewController, PFLogInViewControllerDelegate, PFSi
         self.presentViewController(RVC, animated: false, completion: nil)
     }//func
     
+    func passwordCheck()
+    {
+        print("clicked")
+        if (self.newPasswordField.text == self.confirmPasswordField.text)
+        {
+            print("password matches")
+            let CVC = confirmPageViewController()
+            self.presentViewController(CVC, animated: false, completion: nil)
+            
+        }
+        else
+        {
+            print("passwords did not match")
+        }
+        
+    }
     
     
-
+    
 }
-    //LoginViewController
