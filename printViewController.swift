@@ -21,7 +21,6 @@ class printViewController: UIViewController,PFLogInViewControllerDelegate, PFSig
     {
         
         self.view.backgroundColor = UIColor.whiteColor()
-        
         super.viewDidLoad()
         printButton.backgroundColor = UIColor.darkGrayColor()
         
